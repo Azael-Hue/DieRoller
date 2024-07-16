@@ -5,10 +5,26 @@
     /// </summary>
     public class Die
     {
+        private static Random _random;
+
+        static Die()
+        {
+            _random = new Random();
+        }
+
+        /// <summary>
+        /// Creates the die and rolls it to start with
+        /// a random number.
+        /// </summary>
+        public Die()
+        {
+                Roll();
+        }
+
         /// <summary>
         /// The current face up value of the die
         /// </summary>
-        public byte FaceValue { get; set; }
+        public byte FaceValue { get; private set; }
 
         /// <summary>
         /// True if the die is currnetly held
@@ -17,15 +33,20 @@
 
         /// <summary>
         /// Rolls the die and sets the <see cref="FaceValue" />
-        /// to the new number, Returns the new face value.
+        /// to the new number if the die is not held.
+        /// Returns the <see cref="FaceValue"/>.
         /// </summary>
         /// <return>Returns the new random number</return>
         public byte Roll()
         {
-            // Generate a random numbber
-            // set the face value
-            // return random number
-            throw new NotImplementedException();
+            if (!IsHeld)
+            {
+                // Generate a random number
+                byte newValue = (byte)_random.Next(1, 7);
+
+                FaceValue = newValue;
+            }
+            return FaceValue;
         }
     }
 }
