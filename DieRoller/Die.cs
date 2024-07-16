@@ -22,10 +22,13 @@
         /// <return>Returns the new random number</return>
         public byte Roll()
         {
-            // Generate a random numbber
-            // set the face value
-            // return random number
-            throw new NotImplementedException();
+            // Generate a random number
+            Random random = new Random();
+            byte newValue = (byte)random.Next(1, 7);
+
+            FaceValue = newValue;
+
+            return FaceValue;
         }
     }
 }
